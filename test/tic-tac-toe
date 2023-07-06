@@ -1,0 +1,64 @@
+# Create a 3x3 board
+board = [[" " for _ in range(3)] for _ in range(3)]
+
+# Function to print the board
+def print_board():
+  print(" " + board[0][0] + " | " + board[0][1] + " | " + board[0][2])
+  print("-----------")
+  print(" " + board[1][0] + " | " + board[1][1] + " | " + board[1][2])
+  print("-----------")
+  print(" " + board[2][0] + " | " + board[2][1] + " | " + board[2][2])
+
+# Function to check if the game is won
+def check_win(player):
+  # Check rows
+  for row in board:
+    if row == [player, player, player]:
+      return True
+  # Check columns
+  for col in range(3):
+    if board[0][col] == player and board[1][col] == player and board[2][col] == player:
+      return True
+  # Check diagonals
+  if board[0][0] == player and board[1][1] == player and board[2][2] == player:
+    return True
+  if board[0][2] == player and board[1][1] == player and board[2][0] == player:
+    return True
+  return False
+
+# Function to check if the game is drawn
+def check_draw():
+  for row in board:
+    for col in row:
+      if col == " ":
+        return False
+  return True
+
+# Main game loop
+player = "X"
+while True:
+  # Print the board
+  print_board()
+  # Prompt the player to make a move
+  row = int(input("Enter row (0-2): "))
+  col = int(input("Enter column (0-2): "))
+  # Make the move
+  if board[row][col] == " ":
+    board[row][col] = player
+  else:
+    print("That space is already occupied. Try again.")
+    continue
+  # Check if the game is won or drawn
+  if check_win(player):
+    print_board()
+    print(player, "wins!")
+    break
+  if check_draw():
+    print_board()
+    print("It's a draw.")
+    break
+  # Switch to the other player
+  if player == "X":
+    player = "O"
+  else:
+    player = "X"

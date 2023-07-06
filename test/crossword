@@ -1,0 +1,48 @@
+import random
+
+# Define the size of the crossword puzzle
+rows = 10
+cols = 10
+
+# Create a 2D list to represent the crossword puzzle
+crossword = [[" " for _ in range(cols)] for _ in range(rows)]
+
+# Define a list of words to place in the crossword puzzle
+words = ["dog", "cat", "rat", "bat"]
+
+# Place the words in the crossword puzzle
+for word in words:
+  placed = False
+  while not placed:
+    # Choose a random starting position for the word
+    start_row = random.randint(0, rows - 1)
+    start_col = random.randint(0, cols - 1)
+    # Choose a random direction for the word
+    direction = random.choice(["across", "down"])
+    # Check if the word fits in the crossword puzzle
+    if direction == "across":
+      if start_col + len(word) <= cols:
+        fits = True
+        for i, c in enumerate(word):
+          if crossword[start_row][start_col + i] != " " and crossword[start_row][start_col + i] != c:
+            fits = False
+            break
+        if fits:
+          for i, c in enumerate(word):
+            crossword[start_row][start_col + i] = c
+          placed = True
+    elif direction == "down":
+      if start_row + len(word) <= rows:
+        fits = True
+        for i, c in enumerate(word):
+          if crossword[start_row + i][start_col] != " " and crossword[start_row + i][start_col] != c:
+            fits = False
+            break
+        if fits:
+          for i, c in enumerate(word):
+            crossword[start_row + i][start_col] = c
+          placed = True
+
+# Print the crossword puzzle
+for row in crossword:
+  print(" ".join(row))

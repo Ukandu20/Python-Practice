@@ -1,0 +1,10 @@
+digraph "Web Service" {
+	graph [fontcolor="#2D3436" fontname="Sans-Serif" fontsize=15 label="Web Service" nodesep=0.60 pad=2.0 rankdir=LR ranksep=0.75 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	"6f39efeb24684e18a0c07a3ac6e8d090" [label=lb height=1.9 image="C:\Users\oukan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\resources/aws/network\elastic-load-balancing.png" shape=none]
+	"81f136c0c8ed4f9995e33360a1a4fc8c" [label=web height=1.9 image="C:\Users\oukan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\resources/aws/compute\ec2.png" shape=none]
+	"6f39efeb24684e18a0c07a3ac6e8d090" -> "81f136c0c8ed4f9995e33360a1a4fc8c" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	efffa98fa48c4f2a8651401a976826f6 [label=userdb height=1.9 image="C:\Users\oukan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\resources/aws/database\rds.png" shape=none]
+	"81f136c0c8ed4f9995e33360a1a4fc8c" -> efffa98fa48c4f2a8651401a976826f6 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+}
