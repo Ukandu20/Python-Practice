@@ -58,26 +58,33 @@ def simulate_draw():
     group_colors = ["red", "red", "red", "red", "blue", "blue", "blue", "blue"]
     group_names = ["Group A", "Group B", "Group C", "Group D", "Group E", "Group F", "Group G", "Group H"]
 
+    # Shuffle the teams from each pot into the groups
     for pot in pot_groups:
-        random.shuffle(list(pot.keys()))
+        random.shuffle(pot)
 
-    for pot, color in zip(pot_groups, group_colors):
-        for team, association in pot.items():
-            available_groups = [group for group, data in groups.items() if data["color"] != color]
+    assigned_teams = []
 
-            if association in [club for group in groups.values() for club in pot_groups[group_colors.index(color)].keys()]:
-                paired_club = [club for club, club_association in pot.items() if club_association == association and club != team][0]
-                paired_group = next((group for group, data in groups.items() if data["paired_club"] == paired_club), None)
+    # Assign teams to groups, ensuring constraints are met
+    # The code `for group_name, color in zip(group_names, group_colors):` is iterating over two lists,
+    # `group_names` and `group_colors`, simultaneously.
+    for group_name, color in zip(group_names, group_colors):
+        group_teams = []
 
-                if paired_group:
-                    available_groups = [group for group in available_groups if group != paired_group]
+        for pot in pot_groups:
+            for team in pot:
+                if team["team"] not in assigned_teams:
+                    group_teams.append(team)
+                    assigned_teams.append(team["team"])
+                    break
 
-            selected_group = random.choice(available_groups)
-            groups[selected_group] = {"color": color, "teams": [], "paired_club": None}
-            groups[selected_group]["teams"].append(team)
-            groups[selected_group]["paired_club"] = paired_club
+        groups[group_name] = {
+            "color": color,
+            "teams": group_teams
+        }
 
     return groups
+
+
 
 
 # Main function to run the simulation
@@ -87,7 +94,7 @@ def main():
 
     # Display the result
     for group, data in groups.items():
-        teams = ", ".join(data["teams"])
+        teams = ", ".join([team["team"] for team in data["teams"]])
         color = data["color"]
         print(f"{group} ({color}): {teams}")
 
