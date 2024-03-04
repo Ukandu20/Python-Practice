@@ -58,7 +58,7 @@ def simulate_draw():
     group_colors = ["red", "red", "red", "red", "blue", "blue", "blue", "blue"]
     group_names = ["Group A", "Group B", "Group C", "Group D", "Group E", "Group F", "Group G", "Group H"]
 
-    # Shuffle the teams from each pot into the groups
+    # Shuffle the teams from each pot into the groups one
     for pot in pot_groups:
         random.shuffle(pot)
 
