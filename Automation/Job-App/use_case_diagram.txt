@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+actor Professor/Administrator, Recruiter, Student/Job Seeker as Professor/Administrator, Recruiter, Student/Job Seeker
+
+actor Professor/Administrator {
+  Create LinkedIn posts inviting recruiters
+  Distribute access codes to students
+  Manage student profiles
+}
+
+actor Recruiter {
+  Register on Campus Connect
+  Utilize advanced search features
+  Initiate direct messaging with candidates
+}
+
+actor Student/Job Seeker {
+  Create profile on Campus Connect
+  Upload video showcasing skills
+  Receive job offers from companies
+}
+
+Professor/Administrator --> Create LinkedIn posts inviting recruiters
+Professor/Administrator --> Distribute access codes to students
+Professor/Administrator --> Manage student profiles
+Recruiter --> Register on Campus Connect
+Recruiter --> Utilize advanced search features
+Recruiter --> Initiate direct messaging with candidates
+Student/Job Seeker --> Create profile on Campus Connect
+Student/Job Seeker --> Upload video showcasing skills
+Student/Job Seeker --> Receive job offers from companies
+@enduml
